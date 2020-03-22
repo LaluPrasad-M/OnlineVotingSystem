@@ -12,7 +12,7 @@ app.set('views', __dirname + '/api/views');
 app.set('view engine','ejs');
 
 mongoose.connect(
-    MONGODB_URL
+    process.env.MONGODB_URL
            , { useNewUrlParser: true, useUnifiedTopology: true  }
     
 );
