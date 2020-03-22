@@ -12,7 +12,7 @@ app.set('views', __dirname + '/api/views');
 app.set('view engine','ejs');
 
 mongoose.connect(
-    "mongodb+srv://user_01:Unknown..@cluster0-kbmtp.mongodb.net/2020_Karnataka?retryWrites=true&w=majority"
+    MONGODB_URL
            , { useNewUrlParser: true, useUnifiedTopology: true  }
     
 );
