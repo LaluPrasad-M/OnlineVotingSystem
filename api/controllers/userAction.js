@@ -48,7 +48,7 @@ exports.userAction_get_vote = (req, res, next) => {
                     })
                 };
                 //Goto To Voting Page
-                res.render('Vote',{data:response.candidates,Token:req.query.Token});//,{Token:"?Token="+req.query.Token,});
+                res.render('vote',{data:response.candidates,Token:req.query.Token});//,{Token:"?Token="+req.query.Token,});
             } else {
                 //If Vote Already Given,
                 //Display a message to show vote is agready given
