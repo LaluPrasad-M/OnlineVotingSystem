@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Admin SignUp</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="../public/css/style.css">
+	</head>
+
+	<body>
+		<div class="container">
+			<h1 class="brand"><span>Online </span> Voting System</h1>
+			
+			<nav class="navbar navbar-expand-lg navbar-light">
+				<a class="navbar-brand" href="#">Admin SignUp</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+				</button>
+			
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+					<a class="nav-link" href="../">Home</a>
+					</li>
+				
+					<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Admin
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="../admin/login">Login</a>
+						<a class="dropdown-item active" href="../admin/signup">Signup </a>
+					</div>
+					</li>
+					<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Voter
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="../user/login">Login</a>
+						<a class="dropdown-item" href="../user/signup">Signup</a>
+					</div>
+					</li>
+				</ul>
+				</div>
+			</nav>
+			<section>
+				<div><img src="data:image/jpeg;base64,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"></div>
+				<div class="container">
+					<form id="signup" method ="POST"action="/admin/signup"enctype="multipart/form-data">
+						<div class="form-group"><label for="fname">First Name*:	</label>	<input id="fname"class="form-control"type="text"  name="fname"   required ></div>
+						<div class="form-group"><label for="lname">Last Name:	</label>	<input Id="lname"class="form-control"type="text"  name="lname"></div>
+						<div class="form-group"><label for="gender">Gender*:	</label>
+							<select name="gender"id="gender"class="form-control">
+								<option value="male">Male</option>
+								<option value="female">Female</option>
+								<option value="other">Other</option>
+							</select></div>
+						<div class="form-group"><label for="dob">Date Of Birth*:</label>		<input id="dob"class="form-control"type="date"  name="dob"    required ></div>
+						<div class="form-group"><label for="email">E-mail*:</label>				<input id="email"class="form-control"type="email" name="email"   required ></div>
+						<div class="form-group"><label for="address">Current Address*:</label>	<input id="address"class="form-control"type="text"  name="address"  size="40"required></div>
+						<div class="form-group"><label for="city">City*:</label>				<input id="city"class="form-control"type="text"  name="city"    required></div>
+						<div class="form-group"><label for="pincode">Pin Code*:</label>			<input id="pincode"class="form-control"type="text" name="pincode"required></div>
+						<div class="form-group"><label for="state">State*</label><select name="state"id="state"      class="form-control"><br>
+							<option value="Andhra Pradesh">Andhra Pradesh</option>
+							<option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+							<option value="Arunachal Pradesh">Arunachal Pradesh</option>
+							<option value="Assam">Assam</option>
+							<option value="Bihar">Bihar</option>
+							<option value="Chandigarh">Chandigarh</option>
+							<option value="Chhattisgarh">Chhattisgarh</option>
+							<option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+							<option value="Daman and Diu">Daman and Diu</option>
+							<option value="Delhi">Delhi</option>
+							<option value="Lakshadweep">Lakshadweep</option>
+							<option value="Puducherry">Puducherry</option>
+							<option value="Goa">Goa</option>
+							<option value="Gujarat">Gujarat</option>
+							<option value="Haryana">Haryana</option>
+							<option value="Himachal Pradesh">Himachal Pradesh</option>
+							<option value="Jammu and Kashmir">Jammu and Kashmir</option>
+							<option value="Jharkhand">Jharkhand</option>
+							<option value="Karnataka"selected>Karnataka</option>
+							<option value="Kerala">Kerala</option>
+							<option value="Madhya Pradesh">Madhya Pradesh</option>
+							<option value="Maharashtra">Maharashtra</option>
+							<option value="Manipur">Manipur</option>
+							<option value="Meghalaya">Meghalaya</option>
+							<option value="Mizoram">Mizoram</option>
+							<option value="Nagaland">Nagaland</option>
+							<option value="Odisha">Odisha</option>
+							<option value="Punjab">Punjab</option>
+							<option value="Rajasthan">Rajasthan</option>
+							<option value="Sikkim">Sikkim</option>
+							<option value="Tamil Nadu">Tamil Nadu</option>
+							<option value="Telangana">Telangana</option>
+							<option value="Tripura">Tripura</option>
+							<option value="Uttar Pradesh">Uttar Pradesh</option>
+							<option value="Uttarakhand">Uttarakhand</option>
+							<option value="West Bengal">West Bengal</option>
+						</select></div>
+						<div class="form-group"><label for="password">Password*:</label>	<input id="password"class="form-control"type="password" minlength="8"name="password"required></div>
+						<div class="form-group"><label for="photo">Photo</label>			<input id="photo"class="form-control"type="file" name="photo" single></div>
+						<div class="form-group"><label for="fingerprint">Fingerprint</label><input id="fingerprint"class="form-control"type="file" name="fingerprint"></div>
+						<div class='full' ><label id= "label"style='color:red; text-align: center;'></label></div>
+						
+						<div class="full"><button type="submit">Submit</button></div>
+					</form>
+			
+				</div>
+			
+				<center>
+					<div class="container">
+					<h2>Already Have an Account?</h2>  
+					<a href="login">
+						<img src="../public/images/login.png"height="50"width="200">
+					</a>
+					</div>
+				</center>
+			
+			</section>
+    </div>
+
+    <div>
+      <footer><p>� Copyright 2018-2020. All Rights Are Reserved</p>  </footer>
+    </div>
+	</body>
+	<script>
+		window.onload = function() {
+			const url = new URL(window.location.href);
+			const params= url.searchParams;
+			const Message = params.get('message');
+			document.getElementById("label").innerHTML = Message;
+			var date = new Date();
+			var dd = date.getDate();
+			var mm = date.getMonth();
+			var yyyy = date.getFullYear() - 18;
+			if(dd<10){
+				dSlash = "-0";
+			} else {
+				dSlash = "-";
+			}
+			if(mm<10){
+				mSlash = "-0";
+			} else {
+				mSlash = "-";
+			}
+			document.getElementById("dob").max = yyyy+mSlash+mm+dSlash+dd;
+			document.getElementById("dob").value = yyyy+mSlash+mm+dSlash+dd;
+		}
+	</script>
+</html>

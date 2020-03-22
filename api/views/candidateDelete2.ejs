@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Delete Candidate</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="../public/css/style.css">
+    </head>
+
+    <body>
+        
+        <div class="container">
+            <h1 class="brand"><span>Online </span> Voting System</h1>
+        
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="navbar-brand" href="#">Delete Candidate</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+            
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                    <a class="nav-link" href="/admin/addCandidate<%= Token %>">Add New Candidate</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link active" href="deleteCandidate<%= Token %>">Delete Existing Candidate </a>
+                    </li> 
+                    <li class="nav-item">
+                        <a class="nav-link" href="displayvotes<%= Token %>">Votes Count</a>
+                    </li> 
+                    <li class="nav-item">
+                    <a class="nav-link" href="profile<%= Token %>">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="../">Sign out</a>
+                    </li>
+                </ul>
+                </div>
+            </nav>
+
+            <h2 class="pagename">Delete Candidate</h2>
+            
+            <div class="container">
+                <form id="deleteCandidate"method="POST"action="deleteCandidate1<%= Token %>">
+                    <div class="form-group">
+                        <label for="party">Candidate Party:</label>
+                        <select class="form-control"id="party"name="party" >
+                            <option value="<%= entry[0] %>" ><%= entry[0] %></option>
+                        </select>
+                    </div>         
+                    <div class="form-group">
+                        <label>Candidate Position:</label>
+                        <select class="form-control"id="position"name="position"id="position"required >
+                            <% entry[1].forEach(function(dataitem){%>
+                                <option value="<%= dataitem %>" ><%= dataitem %></option>
+                            <% }); %>
+                        </select>  
+                    </div>
+                    <div class="full">
+                        <button type="submit">DELETE</button>
+                    </div>
+                </form>
+            </div>
+
+            <h3 class="tablename">Filled Positions</h3>
+        
+            <table class="table table-striped">
+                <tr>
+                    <th>Candidate ID</th>
+                    <th>Candidate Name</th>
+                    <th>Candidate Position</th>
+                    <th>Candidate Party</th>
+                </tr>
+                
+                <% data.candidates.forEach(function(dataitem){ %>
+                    <tr>
+                        <td><%= dataitem[0] %></td>
+                        <td><%= dataitem[1] %></td>
+                        <td><%= dataitem[2] %></td>
+                        <td><%= dataitem[3] %></td>
+                    </tr>
+                <% }); %>
+                        
+            </table>
+        </div>
+        <div>
+            <footer><div>� Copyright 2018-2020. All Rights Are Reserved</div></footer>
+        </div>
+    </body> 
+</html>
+

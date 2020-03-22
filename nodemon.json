@@ -1,0 +1,8 @@
+{
+    "env":{
+        "MONGODB_URL": "mongodb+srv://user_01:Unknown..@cluster0-kbmtp.mongodb.net/test?retryWrites=true&w=majority",
+        "MONGO_ATLAS_PW" : "Unknown..",
+        "PORT" : 3000,
+        "JWT_KEY" : "secret"
+    }
+}
