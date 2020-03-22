@@ -123,12 +123,12 @@ exports.admin_post_login =  (req, res, next) => {
                 });                
                 //Get all the Candidates list
                 Candidate.find()
-                .select("cid name position")
+                .select("cid name position party")
                 .exec()
                 .then(docs => {
                     const response = {
                         candidates: docs.map(doc => {
-                            return [doc.cid,doc.name,doc.position]
+                            return [doc.cid,doc.name,doc.position,doc.party]
                         })
                     };
                     //Go to Candidate Add Page
