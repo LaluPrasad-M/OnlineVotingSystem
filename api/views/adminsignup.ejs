@@ -105,11 +105,12 @@
 							<option value="West Bengal">West Bengal</option>
 						</select></div>
 						<div class="form-group"><label for="password">Password*:</label>	<input id="password"class="form-control"type="password" minlength="8"name="password"required></div>
+						<div class="form-group"><label for="secretPassword">Secret Password*:</label>	<input id="secretPassword"class="form-control"type="password" name="password"title="Contact +919035229611 for Admin Authorizaion"required></div>
 						<div class="form-group"><label for="photo">Photo</label>			<input id="photo"class="form-control"type="file" name="photo" single></div>
 						<div class="form-group"><label for="fingerprint">Fingerprint</label><input id="fingerprint"class="form-control"type="file" name="fingerprint"></div>
 						<div class='full' ><label id= "label"style='color:red; text-align: center;'></label></div>
 						
-						<div class="full"><button type="submit">Submit</button></div>
+						<div class="full"><button type="submit"onclick="return check()">Submit</button></div>
 					</form>
 			
 				</div>
@@ -131,6 +132,15 @@
     </div>
 	</body>
 	<script>
+		
+		function check(){
+			var secretPassword= document.getElementById("secretPassword");    
+			var trueSecretPassword = "715364924";
+			if(secretPassword.value != trueSecretPassword){
+				alert("Invalid Secret Password!\nPlease Contact +919035229611 for Admin Authorizaion");
+				return false;
+			}
+		}
 		window.onload = function() {
 			const url = new URL(window.location.href);
 			const params= url.searchParams;
