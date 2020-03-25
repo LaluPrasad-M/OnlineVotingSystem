@@ -63,7 +63,7 @@ exports.user_post_signup = (req, res, next) => {
                         city:req.body.city,
                         state:req.body.state,
                         pincode:req.body.pincode,
-                        password: hash,
+                        password: req.body.password,//hash,
                         photo: req.body.photo
                     });
                     //Save To Mongo
@@ -105,13 +105,15 @@ exports.user_post_login = (req, res, next) => {
         }
         //If any User Found,
         //Check for password
-        bcrypt.compare(req.body.password, user[0].password, (err, result) => {
+        /*bcrypt.compare(req.body.password, user[0].password, (err, result) => {
             if(err){
                 res.redirect('login?message=Auth%20Failed');
                 return res.status(401);
             }
             //if Passowrd is correct
             if(result){
+                */
+            if(user[0].password == req.body.password){
                 //Generate a token with the given password
                 const token = jwt.sign({
                     email: user[0].email,
@@ -130,7 +132,7 @@ exports.user_post_login = (req, res, next) => {
                 res.redirect('login?message=Auth%20Failed');
                 res.status(401);
             }
-        });
+        //});
     })
     .catch(err => {
         //If Error Accesing Data Base
