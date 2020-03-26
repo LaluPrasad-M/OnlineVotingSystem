@@ -20,9 +20,8 @@ exports.userAction_get_candidates = (req, res, next) => {
         return res.status(200);
     })
     .catch(err =>{
-        console.log(err);
         //Redirect to User Main Page
-        res.redirect("mainpage?Token="+req.query.Token);
+        res.render('message',{message: "500 Error: "+ err.message});
         return res.status(500);
     });
 }
@@ -53,14 +52,14 @@ exports.userAction_get_vote = (req, res, next) => {
                 //If Vote Already Given,
                 //Display a message to show vote is agready given
                 res.render("message",{
-                    message:"You Have Already Given your Valuable Vote!\nThank You",
-                    url:"/user/mainpage?Token="+req.query.Token
+                    message:"You Have Already Given your Valuable Vote!\nThank You"
                 })
             }
             res.status(200);
         })
     }) 
     .catch(err =>{
+        res.render('message',{message: "500 Error: "+ err.message});
         res.status(500);
     });
 }
@@ -94,17 +93,16 @@ exports.userAction_post_vote = (req, res, next) => {
             //Redirect to User Main Page
             res.redirect("mainpage?Token="+req.query.Token)
         } else {
-                //If Vote Already Given,
-                //Display a message to show vote is agready given
-                res.render("message",{
-                message:"You Have Already Given your Valuable Vote!\nThank You",
-                url:"/user/mainpage?Token="+req.query.Token
+            //If Vote Already Given,
+            //Display a message to show vote is agready given
+            res.render("message",{
+                message:"You Have Already Given your Valuable Vote!\nThank You"
             })
         }
         res.status(200);
     })
     .catch(err => {
-        res.redirect("mainpage?Token="+req.query.token);
+        res.render('message',{message: "500 Error: "+ err.message});
         res.status(500);
     })
 }

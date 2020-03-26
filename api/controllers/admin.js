@@ -18,12 +18,12 @@ exports.admin_get_details = (req, res, next) => {
             res.render('adminProfile',{data:admin});
             res.status(200);
         }
-        res.redirect('mainpage?Token='+req.query.Token);
-        res.status(200);
+        res.render('message',{message: "400 Error: Invalid Request"});
+        res.status(400);
     })
     //Catch the Error, if occured
     .catch(err =>{
-        res.redirect('mainpage?Token='+req.query.Token);
+        res.render('message',{message: "500 Error: "+ err.message});
         res.status(500); 
     });
 }
@@ -49,7 +49,7 @@ exports.admin_post_signup = (req, res, next) => {
             //Hash the Password
             bcrypt.hash(req.body.password, 10, (err, hash) => {
                 if(err){
-                    res.redirect('signup?message='+err);
+                    res.render('message',{message: "500 Error: "+ err.message});
                     return res.status(500);
                 } else {
                     //Create a Admin using provided data
@@ -77,7 +77,7 @@ exports.admin_post_signup = (req, res, next) => {
                     //If any Error Occured,
                     .catch(err => {
                         //Remain in the Same Page
-                        res.redirect('signup?message='+err);
+                        res.render('message',{message: "500 Error: "+ err.message});
                         res.status(500);
                     });
                 }

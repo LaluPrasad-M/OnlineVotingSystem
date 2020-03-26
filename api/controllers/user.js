@@ -17,12 +17,12 @@ exports.user_get_details = (req, res, next) => {
             res.render('profile',{data:user});
             res.status(200);
         }
-        res.redirect('mainpage?Token='+req.query.Token);
-        res.status(200);
+        res.render('message',{message: "400 Error: Bad Request"});
+        res.status(400);
     })
     //Catch the Error, if occured
     .catch(err =>{
-        res.redirect('mainpage?Token='+req.query.Token);
+        res.render('message',{message: "500 Error: "+ err.message});
         res.status(500); 
     });
 }
