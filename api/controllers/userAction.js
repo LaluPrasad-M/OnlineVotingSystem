@@ -76,27 +76,23 @@ exports.userAction_post_vote = (req, res, next) => {
         //Check If Vote Already Given by Voter
         if(docs.hasGivenVote == false){
             //If vote not given,
-            
-            //IF NOTA
-            if(req.body.candidateId != 0){
-                //Increment Candidate Vote by 1
-                Candidate.update({_id:req.body.candidateId},{
-                    $inc : {
-                        votes : 1
-                    }
-                })
-                .exec();
-            }
-                //Update Voter Permission to not access the page again
-                User.update({_id:user.userId},{
-                    $set : {
-                        hasGivenVote : true
-                    }
-                })
-                .exec();
-                //Redirect to User Main Page
-                res.redirect("mainpage?Token="+req.query.Token)
-            
+        
+            //Increment Candidate Vote by 1
+            Candidate.update({_id:req.body.candidateId},{
+                $inc : {
+                    votes : 1
+                }
+            })
+            .exec();
+            //Update Voter Permission to not access the page again
+            User.update({_id:user.userId},{
+                $set : {
+                    hasGivenVote : true
+                }
+            })
+            .exec();
+            //Redirect to User Main Page
+            res.redirect("mainpage?Token="+req.query.Token)
         } else {
                 //If Vote Already Given,
                 //Display a message to show vote is agready given
