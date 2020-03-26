@@ -28,8 +28,6 @@ const upload = multer({storage: storage,limits: {
 });
 
 
-router.get('/profile', UserController.user_get_details);
-
 router.get('/signup',UserController.user_get_signup);
 
 router.post('/signup',upload.single('photo'), UserController.user_post_signup);
@@ -38,12 +36,14 @@ router.get('/login',UserController.user_get_login);
 
 router.post('/login',UserController.user_post_login);
 
-router.get("/mainpage",UserController.user_get_mainpage);
+router.get("/mainpage",checkAuth, UserController.user_get_mainpage);
 
 router.get('/displayCandidates',checkAuth, UserActionController.userAction_get_candidates);
 
 router.get('/userAction',checkAuth, UserActionController.userAction_get_vote);
 
 router.post('/userAction',checkAuth, UserActionController.userAction_post_vote);
+
+router.get('/profile',checkAuth, UserController.user_get_details);
 
 module.exports = router;
