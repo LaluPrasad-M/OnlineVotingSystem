@@ -18,7 +18,7 @@ exports.admin_get_details = (req, res, next) => {
             res.render('adminProfile',{data:admin});
             res.status(200);
         }
-        res.render('message',{message: "400 Error: Invalid Request"});
+        res.render('message',{message: "400 Error: Bad Request"});
         res.status(400);
     })
     //Catch the Error, if occured
@@ -82,7 +82,7 @@ exports.admin_post_signup = (req, res, next) => {
                     });
                 }
             });
-            }
+        }
     })
 }
 

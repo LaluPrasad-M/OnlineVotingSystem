@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
-const checkAuth = require('../middleware/check-admin-auth');
+const checkAuth = require('../middleware/check-auth');
 
 const AdminController = require("../controllers/admin");
 const CandidateController = require("../controllers/candidate");
@@ -30,8 +30,6 @@ const upload = multer({storage: storage,limits: {
 });
 
 
-router.get('/profile', AdminController.admin_get_details);
-
 router.get('/signup',AdminController.admin_get_signup);
 
 router.post('/signup',upload.single('photo'), AdminController.admin_post_signup);
@@ -40,6 +38,7 @@ router.get('/login',AdminController.admin_get_login);
 
 router.post('/login',AdminController.admin_post_login);
 
+router.get('/profile',checkAuth,AdminController.admin_get_details);
 
 
 router.get('/addCandidate',checkAuth, CandidateController.candidate_get_add);
@@ -54,6 +53,6 @@ router.get('/deleteCandidate1',checkAuth, CandidateController.candidate_get_dele
 
 router.post('/deleteCandidate1', checkAuth, CandidateController.candidate_post_delete2);
 
-router.get('/displayVotes', CandidateController.display_votes);
+router.get('/displayVotes', checkAuth, CandidateController.display_votes);
 
 module.exports = router;
