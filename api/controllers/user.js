@@ -121,7 +121,8 @@ exports.user_post_login = (req, res, next) => {
                 },
                 process.env.JWT_KEY,
                 {
-                    expiresIn: "1h"
+                    algorithm: 'HS384',
+                    expiresIn: 900
                 }
                 );                
                 //Go to User Main Page

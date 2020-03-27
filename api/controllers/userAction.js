@@ -35,6 +35,7 @@ exports.userAction_get_vote = (req, res, next) => {
         //decode the token
         const user = jwt.decode(req.query.Token);
         //Verify If You have given Vote
+        console.log(req.userData.email)
         User.findById(user.userId)
         .select("hasGivenVote")
         .exec()
