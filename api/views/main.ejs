@@ -51,9 +51,23 @@
         </div>
       </nav>
 
-      <div><img class="welcome" alt="Welcome"src="../public/images/main.png"></div>
+      <div><img id="welcome"onclick='openFullscreen();'class="welcome" alt="Welcome"src="../public/images/main.png"></div>
     </div>
       <footer class="footer"><div>� Copyright 2018-2020. All Rights Are Reserved</div></footer>
 </body>
 </center>
+<script>
+  var elem = document.getElementById('welcome');
+  function openFullscreen() {
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.mozRequestFullScreen) { /* Firefox */
+      elem.mozRequestFullScreen();
+    } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { /* IE/Edge */
+      elem.msRequestFullscreen();
+    }
+  }
+  </script>
 </html>
