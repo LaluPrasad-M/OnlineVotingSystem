@@ -3,6 +3,7 @@
         "MONGODB_URL": "mongodb+srv://user_01:Unknown..@cluster0-kbmtp.mongodb.net/2020_Karnataka?retryWrites=true&w=majority",
         "MONGO_ATLAS_PW" : "Unknown..",
         "PORT" : 3000,
-        "JWT_KEY" : "secretWindow"
+        "JWT_KEY" : "secret",
+        "JWT_ADMIN_KEY" : "secret"
     }
 }
