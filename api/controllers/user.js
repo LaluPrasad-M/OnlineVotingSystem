@@ -5,10 +5,8 @@ const User = require('../models/user');
 
 //Request to show User Details
 exports.user_get_details = (req, res, next) => {
-    //decode the token
-    const user = jwt.decode(req.query.Token);
     //Find User using emial ID
-    User.find({email:user.email})
+    User.find({email:req.userData.email})
     .exec()
     .then(user => {
         //If any User Found

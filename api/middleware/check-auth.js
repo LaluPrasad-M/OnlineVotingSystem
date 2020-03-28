@@ -5,7 +5,6 @@ module.exports = (req, res, next) => {
         const token = req.query.Token;
         const decoded = jwt.verify(token, process.env.JWT_KEY);
         req.userData = decoded;
-        console.log(decoded);
         User.findById(req.userData.userId)
         .exec()
         .then(result => {

@@ -31,12 +31,9 @@ exports.userAction_get_vote = (req, res, next) => {
     Candidate.find()
     .select("cid name position party")
     .exec()
-    .then(docs => {
-        //decode the token
-        const user = jwt.decode(req.query.Token);
+    .then(docs => {;
         //Verify If You have given Vote
-        console.log(req.userData.email)
-        User.findById(user.userId)
+        User.findById(req.userData.userId)
         .select("hasGivenVote")
         .exec()
         .then(userdocs => {
@@ -67,9 +64,8 @@ exports.userAction_get_vote = (req, res, next) => {
 
 //Handle POST request for Voting
 exports.userAction_post_vote = (req, res, next) => {
-    const user = jwt.decode(req.query.Token);
     //Check if Valid User
-    User.findById(user.userId)
+    User.findById(req.userData.userId)
     .select("hasGivenVote")
     .exec()
     .then(docs => {
@@ -85,7 +81,7 @@ exports.userAction_post_vote = (req, res, next) => {
             })
             .exec();
             //Update Voter Permission to not access the page again
-            User.update({_id:user.userId},{
+            User.update({_id:req.userData.userId},{
                 $set : {
                     hasGivenVote : true
                 }

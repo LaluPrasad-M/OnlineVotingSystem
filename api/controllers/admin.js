@@ -6,10 +6,8 @@ const Candidate = require('../models/candidate');
 
 //Request to show Admin Details
 exports.admin_get_details = (req, res, next) => {
-    //decode the token
-    const admin = jwt.decode(req.query.Token);
     //Find Admin using email ID
-    Admin.find({email:admin.email})
+    Admin.find({email:req.userData.email})
     .exec()
     .then(admin => {
         //If any Admin user Found
