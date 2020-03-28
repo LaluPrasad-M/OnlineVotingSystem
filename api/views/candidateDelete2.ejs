@@ -50,9 +50,9 @@
                 <form id="deleteCandidate"method="POST"action="deleteCandidate1<%= Token %>">
                     <div class="form-group">
                         <label for="party">Candidate Party:</label>
-                        <select class="form-control"id="party"name="party" >
-                            <option value="<%= entry[0] %>" ><%= entry[0] %></option>
-                        </select>
+                        <label for="party" class="form-control"id="party"name="party" >
+                            <label id = "party"><%= entry[0] %></label>
+                        </label>
                     </div>         
                     <div class="form-group">
                         <label for="position">Candidate Position:</label>
