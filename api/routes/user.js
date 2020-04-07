@@ -46,4 +46,10 @@ router.post('/userAction',checkAuth, UserActionController.userAction_post_vote);
 
 router.get('/profile',checkAuth, UserController.user_get_details);
 
+router.get('/editprofilephoto',checkAuth, UserController.search_user_name);
+
+router.post('/editprofilephoto',checkAuth, UserController.search_result_user_name);
+
+router.get('/setprofile',checkAuth, UserController.setprofile);
+
 module.exports = router;

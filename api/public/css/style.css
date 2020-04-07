@@ -65,8 +65,26 @@ img{
 img#welcome{
   width: 100%;
 }
-  
+.profile img{
+  margin: 5% 0;
+  border-radius: 50%;
+  width:75%;
+  max-width: 340px;
+}
+.instagramprofiles img{
+  margin-top:0;
+  border-radius: 10%;
+  border-top: 2px solid #fff;
+  border-left: 2px solid #fff;
+  border-right: 2px solid #777;
+  border-bottom: 2px solid #777;
+  max-width: 220px;
+  min-width: 144px;
+}
+
 .container form button{
+  font-size: 120%;
+  font-weight: 600;
   background:#3e85cc;
   color:#000000;
   line-height: 250%;
@@ -148,6 +166,19 @@ details details summary{
   max-height:45px;
   max-width:150px ;
 }
+.warning, .warning:hover, .warning:active{
+  color: #ffffff;
+  background-color: #3e85cc;
+  border-top: 2px solid #fff;
+  border-left: 2px solid #fff;
+  border-right: 2px solid #777;
+  border-bottom: 2px solid #777;
+  border-radius: 10px;
+  font-weight: 700;
+  text-shadow:-2px -2px 4px blue,2px 2px 4px red;
+  font-size: 90%;
+}
+
 @media screen and (max-width:575px){
   .vote-table{
     font-size: 80%;
@@ -180,6 +211,9 @@ details details summary{
   .tablename{
     font-size: 180%;
   }
+  .warning, .warning:hover, .warning:active{
+    font-size: 120%;
+  }
 }
 @media screen and (min-width:600px){
   .brand{
@@ -198,6 +232,9 @@ details details summary{
   }
   summary,#details{
     font-size: 150%;
+  }
+  .warning, .warning:hover, .warning:active{
+    font-size: 140%;
   }
 }
 @media screen and (min-width:850px){

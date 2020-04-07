@@ -2,6 +2,71 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
+const rp = require('request-promise');
+
+/*
+    //Instagram userdata
+    rp("https://www.instagram.com/"+ username + "?__a=1")
+    .then(function(instagramData){
+        //success!
+        instagramData = JSON.parse(instagramData)
+        image = instagramData['graphql']['user']['profile_pic_url_hd'];
+        console.log(image)
+        return image;
+    })
+    .catch(function(err){
+        //handle error
+    });
+*/
+exports.setprofile = (req, res, next) => {
+    username = req.query.username;
+    rp("https://www.instagram.com/"+ username + "?__a=1")
+    .then(function(instagramData){
+        //success!
+        instagramData = JSON.parse(instagramData)
+        image = instagramData['graphql']['user']['profile_pic_url_hd'];
+         //Update Voter Profile Picture
+         User.update({_id:req.userData.userId},{
+            $set : {
+                photo : image
+            }
+        })
+        .exec();
+        res.redirect('profile?Token='+req.query.Token);
+    })
+}
+
+exports.search_user_name = (req, res, next) => {
+    //url = 'https://www.instagram.com/web/search/topsearch/?context=user&count=1&query=' + req.body.photo
+    res.render('searchInstagramProfilePhoto',{Token:req.query.Token,profiles:"",search_user_name:''});
+    res.status(200)
+}
+
+
+exports.search_result_user_name = (req, res, next) => {
+    url = 'https://www.instagram.com/web/search/topsearch/?context=user&count=0&query=' + req.body.username
+    rp(url)
+    .then(instagramData =>{
+        //success!
+        instagramData = JSON.parse(instagramData)
+        console.log(instagramData['users'].length);
+
+        if(instagramData['users'].length>0){
+            profiles = instagramData['users']
+            console.log(profiles[0]['user']['username'])
+            res.render('searchInstagramProfilePhoto',{Token:req.query.Token,search_user_name:req.body.username});
+            res.status(200)
+        } else {
+            res.render('searchInstagramProfilePhoto',{Token:req.query.Token,profiles:"",search_user_name:req.body.username});
+            res.status(200)
+        }
+    })
+    .catch(err =>{
+        //handle error
+        console.log(err);
+        res.status(500).JSON({err:err});
+    });
+}
 
 //Request to show User Details
 exports.user_get_details = (req, res, next) => {
@@ -10,13 +75,14 @@ exports.user_get_details = (req, res, next) => {
     .exec()
     .then(user => {
         //If any User Found
-        if(user.length >= 1){
-                /*photo:'https://kusuma-ovs.herokuapp.com/public/Profiles/'+user[0].photo*/
+        if(user.length >= 1){ 
             res.render('profile',{data:user});
             res.status(200);
         }
-        res.render('message',{message: "400 Error: Bad Request"});
-        res.status(400);
+        else{
+            res.render('message',{message: "400 Error: Bad Request"});
+            res.status(400);
+        }
     })
     //Catch the Error, if occured
     .catch(err =>{
@@ -61,8 +127,8 @@ exports.user_post_signup = (req, res, next) => {
                         city:req.body.city,
                         state:req.body.state,
                         pincode:req.body.pincode,
+                        photo:'../public/Profiles/no_profile_set.jpg',
                         password: req.body.password,//hash,
-                        photo: req.body.photo
                     });
                     //Save To Mongo
                     user.save()
@@ -120,7 +186,7 @@ exports.user_post_login = (req, res, next) => {
                 process.env.JWT_KEY,
                 {
                     algorithm: 'HS384',
-                    expiresIn: 900
+                    expiresIn: 9000
                 }
                 );                
                 //Go to User Main Page

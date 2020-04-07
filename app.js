@@ -20,6 +20,7 @@ mongoose.Promise = global.Promise;
 app.use(morgan('dev'));
 
 app.use('/public',express.static('api/public'));
+app.use('/scripts',express.static('api/scripts'));
 app.use(bodyParser.urlencoded({extended : false}));
 app.use(bodyParser.json());
 
